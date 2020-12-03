@@ -1,0 +1,35 @@
+---
+title: "Day1"
+author: "Johannes Friedrich"
+date: "12/1/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Puzzle 1
+
+```{r read_file}
+## read in the file
+
+input <- scan(file = "input.txt", what = integer())
+
+pairs <- combn(input, 2)
+sums <- combn(input, 2, sum)
+
+Reduce(`*`, pairs[,which(sums == 2020)])
+  
+```
+
+
+## Puzzle 2
+
+```{r}
+pairs <- combn(input, 3)
+sums <- combn(input, 3, sum)
+
+Reduce(`*`, pairs[,which(sums == 2020)])
+```
+
