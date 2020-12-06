@@ -1,0 +1,48 @@
+---
+title: "Day6"
+author: "Johannes Friedrich"
+date: "12/6/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Puzzle 1
+
+```{r read_file}
+## read in the file
+
+input <- scan(file = "input.txt", what = character(), sep="\n", blank.lines.skip=FALSE) %>% 
+  as.data.frame() %>% 
+  rename("data" =".") %>% 
+  mutate(id = cumsum(. == '')) %>% ## create IDs
+  filter(data != "") ## remove empty lines now
+  
+```
+
+```{r}
+
+df <- input %>% 
+  mutate(char = str_split(data, "")) %>% 
+  group_by(id) %>% 
+  summarise(uni_char = length(Reduce(union, char))) %>% 
+  summarise(res = sum(uni_char))
+df
+
+```
+
+## Puzzle 2
+
+```{r}
+
+df <- input %>% 
+  mutate(char = str_split(data, "")) %>% 
+  group_by(id) %>% 
+  summarise(uni_char = length(Reduce(intersect, char))) %>% 
+  summarise(res = sum(uni_char))
+df
+
+```
