@@ -9,3 +9,5 @@ If I find time to solve the puzzle, I will publish my solution made with **R** h
 | 3 | &#10004;  |  &#10004; |
 | 4 | &#10004;  |  &#10004; |
 | 5 | &#10004;  |  &#10004; |
+| 6 | &#10004;  |  &#10004; |
+| 7 | &#10004;  |   |
