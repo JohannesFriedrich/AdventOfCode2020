@@ -1,28 +1,21 @@
----
-title: "Day5"
-author: "Johannes Friedrich"
-date: "12/5/2020"
-output: github_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(tidyverse)
-library(magrittr)
-```
+Day5
+================
+Johannes Friedrich
+12/5/2020
 
 ## Puzzle 1
 
-```{r read_file}
+``` r
 ## read in the file line by line
 input <- scan("input.txt", what=character(), sep="\n",blank.lines.skip=FALSE)
 ```
-```{r}
+
+``` r
 row <- str_sub(input, 1, 7)
 col <- str_sub(input, -3)
 ```
 
-```{r}
+``` r
 upper_half <- function(vec){
   
   return(vec[((length(vec)/2)+1):length(vec)])
@@ -56,12 +49,12 @@ get_result <- function(input, check_character_lower, check_character_upper, max_
 }
 ```
 
-```{r}
+``` r
 row_final <- mapply(get_result, row, "F", "B", 127)
 col_final <- mapply(get_result, col, "L", "R", 7)
 ```
 
-```{r}
+``` r
 df <- data.frame(
   input = input, 
   row = row,
@@ -72,15 +65,17 @@ df <- data.frame(
 )
 ```
 
-```{r}
+``` r
 df %>% 
   summarise(max(seat_id))
 ```
 
- ## Puzzle 2
- 
-```{r}
+    ##   max(seat_id)
+    ## 1          813
 
+\#\# Puzzle 2
+
+``` r
 df %>% 
   filter(row_final != 0,
          row_final != 127) %>% 
@@ -90,4 +85,6 @@ arrange(seat_id)  %>%
   select(row_final, col_final,seat_id) %>% 
   mutate(seat_id) -1
 ```
- 
+
+    ##   row_final col_final seat_id
+    ## 1        75         4     612

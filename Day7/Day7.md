@@ -1,18 +1,11 @@
----
-title: "Day7"
-author: "Johannes Friedrich"
-date: "12/7/2020"
-output: github_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(tidyverse)
-```
+Day7
+================
+Johannes Friedrich
+12/7/2020
 
 ## Puzzle 1
 
-```{r read_file}
+``` r
 ## read in the file
 
 input <- scan(file = "input.txt", what = "", sep="\n") %>% 
@@ -27,7 +20,7 @@ test <- scan(file = "test.txt", what = "", sep="\n") %>%
   mutate(id = cumsum(. != ' '))
 ```
 
-```{r}
+``` r
 ## exctract numbers
 nr_childs_in_line <- function(line){ 
   stringr::str_extract_all(line, "\\d") %>% 
@@ -63,13 +56,9 @@ rowwise() %>%
          father  = stringr::word(line_cleaned_one_element,1, 2),
          children = map(line_cleaned_one_element, get_children),
          nr_bags_in_line =  map(data, nr_childs_in_line))
-
-
 ```
 
-
-```{r}
-
+``` r
 children = c()
 
 children_diff <- "shiny gold"
@@ -97,11 +86,12 @@ repeat{
 
 length(children)
 ```
+
+    ## [1] 272
 
 ## Puzzle 2
 
-```{r}
-
+``` r
 children = c()
 
 children_diff <- "shiny gold"
@@ -129,3 +119,5 @@ repeat{
 
 length(children)
 ```
+
+    ## [1] 272

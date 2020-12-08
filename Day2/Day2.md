@@ -1,18 +1,11 @@
----
-title: "Day2"
-author: "Johannes Friedrich"
-date: "12/2/2020"
-output: github_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(tidyverse)
-```
+Day2
+================
+Johannes Friedrich
+12/2/2020
 
 ## Puzzle 1
 
-```{r read_file}
+``` r
 ## read in the file
 input <- read_delim("input.txt", ":", 
     escape_double = FALSE, col_names = FALSE, 
@@ -22,8 +15,7 @@ input <- read_delim("input.txt", ":",
 ))
 ```
 
-```{r}
-
+``` r
 all_data <- lapply(1:nrow(input), function(x){
   
   data_temp <- input$X1[x]
@@ -44,8 +36,7 @@ all_data <- lapply(1:nrow(input), function(x){
   bind_rows()
 ```
 
-
-```{r}
+``` r
 ## Count rowwise all letters of type ' letter' in column `code`
 ## add new column *``correct` if the value of `count` is in between min and max
 ## Count all correct and non-correct codes
@@ -60,11 +51,17 @@ all_data %>%
   summarise(n())
 ```
 
+    ## `summarise()` ungrouping output (override with `.groups` argument)
+
+    ## # A tibble: 2 x 2
+    ##   correct `n()`
+    ##   <lgl>   <int>
+    ## 1 FALSE     533
+    ## 2 TRUE      467
 
 ## Puzzle 2
 
-```{r}
-
+``` r
 all_data2 <- lapply(1:nrow(all_data), function(x){
   
   data_temp <- all_data[x,] 
@@ -85,4 +82,3 @@ all_data2 <- lapply(1:nrow(all_data), function(x){
   unlist() %>% 
   sum()
 ```
-

@@ -11,3 +11,4 @@ If I find time to solve the puzzle, I will publish my solution made with **R** h
 | 5 | &#10004;  |  &#10004; |
 | 6 | &#10004;  |  &#10004; |
 | 7 | &#10004;  |   |
+| 8 | &#10004;  |  &#10004; |

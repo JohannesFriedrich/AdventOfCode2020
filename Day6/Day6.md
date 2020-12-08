@@ -1,18 +1,11 @@
----
-title: "Day6"
-author: "Johannes Friedrich"
-date: "12/6/2020"
-output: github_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(tidyverse)
-```
+Day6
+================
+Johannes Friedrich
+12/6/2020
 
 ## Puzzle 1
 
-```{r read_file}
+``` r
 ## read in the file
 
 input <- scan(file = "input.txt", what = character(), sep="\n", blank.lines.skip=FALSE) %>% 
@@ -20,29 +13,44 @@ input <- scan(file = "input.txt", what = character(), sep="\n", blank.lines.skip
   rename("data" =".") %>% 
   mutate(id = cumsum(. == '')) %>% ## create IDs
   filter(data != "") ## remove empty lines now
-  
 ```
 
-```{r}
-
+``` r
 df <- input %>% 
   mutate(char = str_split(data, "")) %>% 
   group_by(id) %>% 
   summarise(uni_char = length(Reduce(union, char))) %>% 
   summarise(res = sum(uni_char))
-df
-
 ```
+
+    ## `summarise()` ungrouping output (override with `.groups` argument)
+
+``` r
+df
+```
+
+    ## # A tibble: 1 x 1
+    ##     res
+    ##   <int>
+    ## 1  6587
 
 ## Puzzle 2
 
-```{r}
-
+``` r
 df <- input %>% 
   mutate(char = str_split(data, "")) %>% 
   group_by(id) %>% 
   summarise(uni_char = length(Reduce(intersect, char))) %>% 
   summarise(res = sum(uni_char))
-df
-
 ```
+
+    ## `summarise()` ungrouping output (override with `.groups` argument)
+
+``` r
+df
+```
+
+    ## # A tibble: 1 x 1
+    ##     res
+    ##   <int>
+    ## 1  3235

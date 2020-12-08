@@ -1,24 +1,16 @@
----
-title: "Day3"
-author: "Johannes Friedrich"
-date: "12/3/2020"
-output: github_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(tidyverse)
-```
+Day3
+================
+Johannes Friedrich
+12/3/2020
 
 ## Puzzle 1
 
-```{r read_file}
+``` r
 ## read in the file
 input <- readLines("input.txt")
 ```
 
-
-```{r result_1}
+``` r
 tree <- 0
 
 ## helper function to get right position in the string vector: if the input nr can be divided by 31 (the length of each line) with a rest, then just return the mod value. If it is exactly a multiple of 31, then return
@@ -52,13 +44,15 @@ for (line in 1:(length(input))){
 tree
 ```
 
+    ## [1] 237
 
 ## Puzzle 2
 
-A modification of the used for-loop above. Now we can adjust the stepwidth in each line and also the line step (needed for the last slop 1 - 2)
+A modification of the used for-loop above. Now we can adjust the
+stepwidth in each line and also the line step (needed for the last slop
+1 - 2)
 
-```{r}
-
+``` r
 walk <- function(offset, offset_line){
   
   trees <- 0
@@ -82,11 +76,10 @@ walk <- function(offset, offset_line){
   }
   return(trees)
 }
-
 ```
 
-```{r result_2}
+``` r
 walk(1,1) *walk(3,1) * walk(5,1) * walk(7,1) * walk(1,2)
 ```
 
-
+    ## [1] 2106818610
